@@ -2,12 +2,14 @@ export const THEME = {
   COLORS: {
     WHITE: "#FFFFFF",
 
-    GREY_100: "#E1E1E6",
-    GREY_300: "#8D8D99",
-    GREY_500: "#505059",
-    GREY_600: "#323238",
-    GREY_700: "#29292E",
-    GREY_800: "#202024",
+    BLUE_100: "#dfe2fc",
+    BLUE_300: "#6970a5",
+    BLUE_500: "#555c90",
+    BLUE_600: "#454b76",
+    BLUE_700: "#393d61",
+    BLUE_800: "#292D50",
+
+    GRAY_500: '#505059',
 
     BRAND_LIGHT: "#00B37E",
     BRAND_MID: "#00875F",

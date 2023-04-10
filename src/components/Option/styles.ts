@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
   container: {
     width: '100%',
     minHeight: 76,
-    backgroundColor: THEME.COLORS.GREY_800,
+    backgroundColor: THEME.COLORS.BLUE_800,
     borderRadius: 6,
     flexDirection: 'row',
     alignItems: 'center',
@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
     marginBottom: 12,
   },
   title: {
-    color: THEME.COLORS.GREY_100,
+    color: THEME.COLORS.WHITE,
     fontFamily: 'Roboto_400Regular',
     fontSize: 14,
     marginRight: 32,

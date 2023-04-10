@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: THEME.COLORS.GREY_800,
+    backgroundColor: THEME.COLORS.BLUE_800,
     padding: 32
   },
   message: {
@@ -13,13 +13,13 @@ export const styles = StyleSheet.create({
     marginBottom: 80,
   },
   title: {
-    color: THEME.COLORS.GREY_100,
+    color: THEME.COLORS.WHITE,
     fontFamily: THEME.FONTS.BOLD,
     fontSize: 24,
     marginTop: 41
   },
   subtitle: {
-    color: THEME.COLORS.GREY_100,
+    color: THEME.COLORS.WHITE,
     fontFamily: THEME.FONTS.REGULAR,
     fontSize: 16,
     marginTop: 8

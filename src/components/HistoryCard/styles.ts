@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     width: '100%',
     height: 90,
     borderRadius: 6,
-    backgroundColor: THEME.COLORS.GREY_700,
+    backgroundColor: THEME.COLORS.BLUE_700,
     padding: 16,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -14,12 +14,12 @@ export const styles = StyleSheet.create({
     marginBottom: 12
   },
   title: {
-    color: THEME.COLORS.GREY_100,
+    color: THEME.COLORS.WHITE,
     fontFamily: THEME.FONTS.REGULAR,
     fontSize: 16,
   },
   subtitle: {
-    color: THEME.COLORS.GREY_300,
+    color: THEME.COLORS.BLUE_300,
     fontSize: 12
   }
 });

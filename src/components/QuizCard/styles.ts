@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
   container: {
     width: CARD_WIDTH,
     height: 169,
-    backgroundColor: THEME.COLORS.GREY_700,
+    backgroundColor: THEME.COLORS.BLUE_700,
     borderRadius: 6,
     padding: 16,
     margin: MARGIN,
@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 6,
-    backgroundColor: THEME.COLORS.GREY_600,
+    backgroundColor: THEME.COLORS.BLUE_600,
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -35,7 +35,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     fontSize: 16,
     fontFamily: THEME.FONTS.REGULAR,
-    color: THEME.COLORS.GREY_100,
+    color: THEME.COLORS.WHITE,
     marginTop: 24
   },
 });

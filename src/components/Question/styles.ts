@@ -8,7 +8,7 @@ const MARGIN_HORIZONTAL = 24 * 2;
 export const styles = StyleSheet.create({
   container: {
     width: width - MARGIN_HORIZONTAL,
-    backgroundColor: THEME.COLORS.GREY_700,
+    backgroundColor: THEME.COLORS.BLUE_700,
     borderRadius: 12,
     padding: 22,
   },

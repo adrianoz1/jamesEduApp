@@ -31,7 +31,7 @@ export function Header({ title, subtitle, icon: Icon, onPress }: Props) {
       >
         <Icon
           size={28}
-          color={THEME.COLORS.GREY_100}
+          color={THEME.COLORS.WHITE}
         />
       </TouchableOpacity>
     </View>
