@@ -2,6 +2,8 @@ import { StyleSheet } from 'react-native';
 import { THEME } from '../../styles/theme';
 
 export const placeholderColor = THEME.COLORS.WHITE;
+export const placeholderErrorColor = THEME.COLORS.DANGER_LIGHT;
+
 
 export const styles = StyleSheet.create({
   input: {

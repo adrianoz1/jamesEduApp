@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { HistoryProps } from '../components/HistoryCard';
 import { Alert } from 'react-native';
 
-const HISTORY_COLLECTION = '@ignite_quiz:history';
+const HISTORY_COLLECTION = '@jamesedu:history';
 
 export async function historyGetAll() {
   try {

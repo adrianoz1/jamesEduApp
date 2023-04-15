@@ -36,6 +36,7 @@ export function Home() {
     <View style={styles.container}>
       <Header
         icon={Trophy}
+        logout={true}
         title="Vamos estudar"
         subtitle="Treine seus conhecimento"
         onPress={() => navigate("history")}

@@ -1,16 +1,21 @@
-import { TouchableOpacity, TouchableOpacityProps, Text } from 'react-native';
+import { TouchableOpacity, TouchableOpacityProps, Text } from "react-native";
 
-import { styles } from './styles';
+import { styles } from "./styles";
 
 type Props = TouchableOpacityProps & {
   title: string;
-}
+  variant?: "default" | "outline";
+  isLoading?: boolean;
+};
 
-export function Button({ title, ...rest }: Props) {
+export function Button({ title, variant, isLoading, ...rest }: Props) {
   return (
-    <TouchableOpacity style={styles.container} {...rest}>
+    <TouchableOpacity disabled={!!isLoading}
+      style={variant === "outline" ? styles.containerOutline : styles.container}
+      {...rest}
+    >
       <Text style={styles.title}>
-        {title}
+        {isLoading ? "..." : title}
       </Text>
     </TouchableOpacity>
   );

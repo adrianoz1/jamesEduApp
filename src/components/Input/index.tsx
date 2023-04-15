@@ -1,24 +1,36 @@
-import React from 'react';
-import { TextInput, View } from 'react-native';
+import React from "react";
+import { TextInput, View, TextInputProps } from "react-native";
 
-import { placeholderColor, styles } from './styles';
+import { placeholderColor, placeholderErrorColor, styles } from "./styles";
 
-type Props = {
+type Props = TextInputProps & {
   value: string;
   placeholder: string;
   style?: object;
+  errorMessage?: string | null;
+  isInvalid?: boolean;
   onChangeText: (text: string) => void;
-}
+};
 
-export const Input = (props: Props) => {
+export const Input = ({
+  value,
+  placeholder,
+  style,
+  onChangeText,
+  errorMessage = null,
+  isInvalid,
+  ...rest
+}: Props) => {
   return (
     <View>
       <TextInput
-        style={[styles.input, props.style]}
-        placeholder={props.placeholder}
-        value={props.value}
-        placeholderTextColor={placeholderColor}
-        onChangeText={props.onChangeText}
+        style={[styles.input, style]}
+        placeholder={placeholder}
+        value={value}
+        autoCapitalize="none"
+        placeholderTextColor={errorMessage ? placeholderErrorColor : placeholderColor}
+        onChangeText={onChangeText}
+        {...rest}
       />
     </View>
   );
