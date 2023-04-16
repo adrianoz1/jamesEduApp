@@ -14,7 +14,6 @@ import Animated, {
 
 import { styles } from "./styles";
 
-import { QUIZ } from "../../data/quiz";
 import { historyAdd } from "../../storage/quizHistoryStorage";
 
 import { Loading } from "../../components/Loading";
@@ -22,12 +21,12 @@ import { Question } from "../../components/Question";
 import { QuizHeader } from "../../components/QuizHeader";
 import { ConfirmButton } from "../../components/ConfirmButton";
 import { OutlineButton } from "../../components/OutlineButton";
+import { api } from "../../services/api";
+import { QuizProps } from "./types";
 
 interface Params {
   id: string;
 }
-
-type QuizProps = typeof QUIZ[0];
 
 export function Quiz() {
   const [points, setPoints] = useState(0);
@@ -40,10 +39,22 @@ export function Quiz() {
 
   const shake = useSharedValue(0);
 
+  const navigation = useNavigation();
   const { navigate } = useNavigation();
 
   const route = useRoute();
   const { id } = route.params as Params;
+
+  async function fetchQuiz() {
+    try {
+      const response = await api.get(`/quizzes/${id}`);
+      setQuiz(response.data.quizzes);
+      if (!response.data.quizzes) navigation.goBack();
+      setIsLoading(false);
+    } catch (error) {
+      throw error;
+    }
+  }
 
   function handleSkipConfirm() {
     Alert.alert("Pular", "Deseja realmente pular a questão?", [
@@ -52,43 +63,45 @@ export function Quiz() {
     ]);
   }
 
-  async function handleFinished() {
+  async function handleFinished(points: number) {
     await historyAdd({
       id: new Date().getTime().toString(),
       title: quiz.title,
       level: quiz.level,
       points,
-      questions: quiz.questions.length,
+      questions: quiz?.questions?.length,
     });
 
     navigate("finish", {
       points: String(points),
-      total: String(quiz.questions.length),
+      total: String(quiz?.questions?.length),
     });
   }
 
-  function handleNextQuestion() {
-    if (currentQuestion < quiz.questions.length - 1) {
+  function handleNextQuestion(points: number) {
+    if (currentQuestion < quiz.questions?.length - 1) {
       setCurrentQuestion((prevState) => prevState + 1);
     } else {
-      handleFinished();
+      handleFinished(points);
     }
   }
 
-  async function handleConfirm() {
+  function handleConfirm() {
     if (alternativeSelected === null) {
       return handleSkipConfirm();
     }
 
-    if (quiz.questions[currentQuestion].correct === alternativeSelected) {
-      setPoints((prevState) => prevState + 1);
+    if (
+      quiz.questions[currentQuestion]?.alternatives[alternativeSelected]
+        .is_correct
+    ) {
+      handleNextQuestion(points + 1);
+      setPoints(prevPoints => prevPoints + 1);
     } else {
       shakeAnimation();
+      handleNextQuestion(points);
     }
-
     setAlternativeSelected(null);
-
-    handleNextQuestion();
   }
 
   function handleStop() {
@@ -129,9 +142,7 @@ export function Quiz() {
   });
 
   useEffect(() => {
-    const quizSelected = QUIZ.filter((item) => item.id === id)[0];
-    setQuiz(quizSelected);
-    setIsLoading(false);
+    fetchQuiz();
   }, []);
 
   if (isLoading) {
@@ -147,12 +158,12 @@ export function Quiz() {
         <QuizHeader
           title={quiz.title}
           currentQuestion={currentQuestion + 1}
-          totalOfQuestions={quiz.questions.length}
+          totalOfQuestions={quiz.questions?.length}
         />
 
         <Animated.View style={shakeStyleAnimated}>
           <Question
-            key={quiz.questions[currentQuestion].title}
+            key={quiz.questions[currentQuestion].content}
             question={quiz.questions[currentQuestion]}
             alternativeSelected={alternativeSelected}
             setAlternativeSelected={setAlternativeSelected}

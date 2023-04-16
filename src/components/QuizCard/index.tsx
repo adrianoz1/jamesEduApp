@@ -21,15 +21,9 @@ type Props = TouchableOpacityProps & {
 };
 
 export function QuizCard({ data, index, ...rest }: Props) {
-  const Icon = data.svg;
-
   return (
     <TouchableOpacityAnimated entering={FadeInUp.delay(index*100)} style={styles.container} {...rest}>
       <View style={styles.header}>
-        <View style={styles.iconContainer}>
-          {Icon && <Icon size={24} color={THEME.COLORS.WHITE} />}
-        </View>
-
         <LevelBars level={data.level} />
       </View>
 

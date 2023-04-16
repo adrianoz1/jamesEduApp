@@ -30,14 +30,14 @@ export function Header({ title, subtitle, logout, icon: Icon, onPress }: Props) 
 
         <Text style={styles.subtitle}>{subtitle}</Text>
       </View>
-
+{/* 
       <TouchableOpacity
         style={styles.history}
         activeOpacity={0.7}
         onPress={onPress}
       >
         <Icon size={28} color={THEME.COLORS.WHITE} />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
       {logout && (
         <TouchableOpacity

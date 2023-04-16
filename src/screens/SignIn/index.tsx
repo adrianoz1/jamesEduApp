@@ -46,7 +46,6 @@ export const SignIn = () => {
   const { navigate } = useNavigation();
 
   async function handleSignIn({ email, password }: FormDataProps) {
-    console.log(email, password);
     try {
       setIsLoading(true);
       await signIn(email, password);

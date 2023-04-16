@@ -2,14 +2,11 @@ import { View, Text } from 'react-native';
 
 import { Option } from '../Option';
 import { styles } from './styles';
+import { Question as QuestionItem } from '../../screens/Quiz/types';
 
-type QuestionProps = {
-  title: string;
-  alternatives: string[];
-}
 
 type Props = {
-  question: QuestionProps;
+  question: QuestionItem;
   alternativeSelected?: number | null;
   setAlternativeSelected?: (value: number) => void;
 }
@@ -18,14 +15,14 @@ export function Question({ question, alternativeSelected, setAlternativeSelected
   return (
     <View style={styles.container}>
       <Text style={styles.title}>
-        {question.title}
+        {question.content}
       </Text>
 
       {
         question.alternatives.map((alternative, index) => (
           <Option
             key={index}
-            title={alternative}
+            title={alternative.content}
             checked={alternativeSelected === index}
             onPress={() => setAlternativeSelected && setAlternativeSelected(index)}
           />

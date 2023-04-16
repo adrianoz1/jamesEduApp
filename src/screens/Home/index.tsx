@@ -8,13 +8,19 @@ import { Header } from "../../components/Header";
 import { QuizCard } from "../../components/QuizCard";
 
 import { styles } from "./styles";
-import { QUIZZES } from "../../data/quizzes";
+import { api } from "../../services/api";
+import { AppError } from "../../utils/AppError";
+import { useToast } from "../../context/ToastContext";
+import { QuizProps } from "../Quiz/types";
 
 export function Home() {
-  const [quizzes, setQuizzes] = useState(QUIZZES);
+  const [quizzes, setQuizzes] = useState([] as QuizProps[]);
+  const [allQuizzes, setAllQuizzes] = useState([] as QuizProps[]);
+
   const [levels, setLevels] = useState([1, 2, 3]);
 
   const { navigate } = useNavigation();
+  const { showToast } = useToast();
 
   function handleLevelFilter(level: number) {
     const levelAlreadySelected = levels.includes(level);
@@ -29,8 +35,30 @@ export function Home() {
   }
 
   useEffect(() => {
-    setQuizzes(QUIZZES.filter((quiz) => levels.includes(quiz.level)));
+    setQuizzes(allQuizzes.filter(({ level }) => levels.includes(level)));
   }, [levels]);
+
+  async function fetchQuizzes() {
+    try {
+      const response = await api.get("/quizzes");
+      const quizzes = response.data.quizzes.filter((quiz: QuizProps) =>
+        levels.includes(quiz.level)
+      );
+      setAllQuizzes(quizzes);
+      setQuizzes(quizzes);
+    } catch (error) {
+      const isAppError = error instanceof AppError;
+      const title = isAppError
+        ? error.message
+        : "Não foi possível carregar os quizzes. Tente novamente mais tarde.";
+
+      showToast(title);
+    }
+  }
+
+  useEffect(() => {
+    fetchQuizzes();
+  }, []);
 
   return (
     <View style={styles.container}>
