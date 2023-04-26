@@ -8,6 +8,18 @@ import { AuthRoutes } from './auth.routes';
 
 import { useAuth } from '../hooks/useAuth';
 import { Loading } from '../components/Loading';
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
+
+type AppRoutes = {
+  home: undefined;
+  signUp: undefined;
+  signIn: undefined;
+  quiz: { id: string };
+  history: undefined;
+  finish: { total: string, points: string };
+}
+
+export type AppNavigatorRoutesProps = BottomTabNavigationProp<AppRoutes>;
 
 export function Routes() {
 
@@ -23,7 +35,7 @@ export function Routes() {
   return (
     <View style={{ flex: 1, backgroundColor: THEME.COLORS.BLUE_800 }}>
       <NavigationContainer>
-        {user.id ? <AppRoutes /> : <AuthRoutes />}
+        {user.id ? (<AppRoutes />) : <AuthRoutes />}
       </NavigationContainer>
     </View>
   )

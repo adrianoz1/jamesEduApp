@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, Image } from "react-native";
+
+import { ImageBackground } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
 
@@ -15,6 +17,8 @@ import { Controller, useForm } from "react-hook-form";
 import { useAuth } from "../../hooks/useAuth";
 import { AppError } from "../../utils/AppError";
 import { useToast } from "../../context/ToastContext";
+
+import backgroundImage from "../../assets/background.png";
 
 type FormDataProps = {
   email: string;
@@ -62,49 +66,55 @@ export const SignIn = () => {
   }
 
   return (
-    <View style={styles.container}>
-      <ScrollView
-        contentContainerStyle={styles.signIn}
-        showsVerticalScrollIndicator={false}
-      >
-        <Text style={styles.title}>Login</Text>
-        <Controller
-          control={control}
-          name="email"
-          render={({ field: { onChange, value } }) => (
-            <Input
-              keyboardType="email-address"
-              autoCapitalize="none"
-              style={styles.input}
-              placeholder="Seu E-mail"
-              value={value}
-              onChangeText={onChange}
-              errorMessage={errors.email?.message}
-            />
-          )}
-        />
+    <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
+      <View style={styles.container}>
+        <ScrollView
+          contentContainerStyle={styles.signIn}
+          showsVerticalScrollIndicator={false}
+        >
+          <Text style={styles.title}>Login</Text>
+          <Controller
+            control={control}
+            name="email"
+            render={({ field: { onChange, value } }) => (
+              <Input
+                keyboardType="email-address"
+                autoCapitalize="none"
+                style={styles.input}
+                placeholder="Seu E-mail"
+                value={value}
+                onChangeText={onChange}
+                errorMessage={errors.email?.message}
+              />
+            )}
+          />
 
-        <Controller
-          control={control}
-          name="password"
-          render={({ field: { onChange, value } }) => (
-            <Input
-              style={styles.input}
-              placeholder="Senha"
-              value={value}
-              secureTextEntry={true}
-              onChangeText={onChange}
-              errorMessage={errors.password?.message}
-            />
-          )}
-        />
-        <Button title="Entrar" onPress={handleSubmit(handleSignIn)} isLoading={isLoading} />
-        <Button
-          variant="outline"
-          title="Cadastrar"
-          onPress={() => navigate("signUp")}
-        />
-      </ScrollView>
-    </View>
+          <Controller
+            control={control}
+            name="password"
+            render={({ field: { onChange, value } }) => (
+              <Input
+                style={styles.input}
+                placeholder="Senha"
+                value={value}
+                secureTextEntry={true}
+                onChangeText={onChange}
+                errorMessage={errors.password?.message}
+              />
+            )}
+          />
+          <Button
+            title="Entrar"
+            onPress={handleSubmit(handleSignIn)}
+            isLoading={isLoading}
+          />
+          <Button
+            variant="outline"
+            title="Cadastrar"
+            onPress={() => navigate("signUp")}
+          />
+        </ScrollView>
+      </View>
+    </ImageBackground>
   );
 };

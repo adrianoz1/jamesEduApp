@@ -3,6 +3,7 @@ import { HistoryProps } from '../components/HistoryCard';
 import { Alert } from 'react-native';
 
 const HISTORY_COLLECTION = '@jamesedu:history';
+import { api } from "../services/api";
 
 export async function historyGetAll() {
   try {
@@ -19,7 +20,18 @@ export async function historyGetAll() {
 
 export async function historyAdd(newHistory: HistoryProps) {
   try {
+    const { level, points, questions, title, quizId } = newHistory;
+    const { data } = await api.post("/history", {
+      level,
+      points,
+      questions,
+      title,
+      quizId
+    });
+    console.log(data);
+
     const response = await historyGetAll();
+
     const storedHistory = response ? response : [];
 
     const storage = JSON.stringify([...storedHistory, newHistory]);

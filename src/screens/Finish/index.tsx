@@ -30,7 +30,7 @@ export function Finish() {
 
       <Button
         title="Ir para o início"
-        onPress={() => navigate('home')}
+        onPress={() => navigate('homeScreen')}
       />
     </View>
   );

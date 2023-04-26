@@ -12,6 +12,7 @@ import { api } from "../../services/api";
 import { AppError } from "../../utils/AppError";
 import { useToast } from "../../context/ToastContext";
 import { QuizProps } from "../Quiz/types";
+import { AppNavigatorRoutesProps } from "../../routes";
 
 export function Home() {
   const [quizzes, setQuizzes] = useState([] as QuizProps[]);
@@ -19,7 +20,7 @@ export function Home() {
 
   const [levels, setLevels] = useState([1, 2, 3]);
 
-  const { navigate } = useNavigation();
+  const navigation = useNavigation<AppNavigatorRoutesProps>();
   const { showToast } = useToast();
 
   function handleLevelFilter(level: number) {
@@ -67,7 +68,7 @@ export function Home() {
         logout={true}
         title="Vamos estudar"
         subtitle="Treine seus conhecimento"
-        onPress={() => navigate("history")}
+        onPress={() => navigation.navigate("history")}
       />
 
       <View style={styles.levels}>
@@ -98,7 +99,7 @@ export function Home() {
           <QuizCard
             index={index}
             data={item}
-            onPress={() => navigate("quiz", { id: item.id })}
+            onPress={() => navigation.navigate("quiz", { id: item.id })}
           />
         )}
         numColumns={2}

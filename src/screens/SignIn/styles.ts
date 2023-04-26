@@ -4,7 +4,6 @@ import { THEME } from '../../styles/theme';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: THEME.COLORS.BLUE_800,
     justifyContent: 'center',
     paddingTop: 100
   },
@@ -24,5 +23,9 @@ export const styles = StyleSheet.create({
   footer: {
     flexDirection: 'row',
     marginTop: 24,
-  }
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover', // Redimensionar a imagem para cobrir toda a tela
+  },
 });

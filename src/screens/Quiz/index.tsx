@@ -58,7 +58,7 @@ export function Quiz() {
 
   function handleSkipConfirm() {
     Alert.alert("Pular", "Deseja realmente pular a questão?", [
-      { text: "Sim", onPress: () => handleNextQuestion() },
+      { text: "Sim", onPress: () => handleNextQuestion(points) },
       { text: "Não", onPress: () => {} },
     ]);
   }
@@ -69,6 +69,7 @@ export function Quiz() {
       title: quiz.title,
       level: quiz.level,
       points,
+      quizId: id,
       questions: quiz?.questions?.length,
     });
 

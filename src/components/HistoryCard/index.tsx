@@ -10,6 +10,7 @@ export type HistoryProps = {
   points: number;
   questions: number;
   level: number;
+  quizId: string;
 }
 
 type Props = {
