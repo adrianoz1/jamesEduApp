@@ -1,9 +1,16 @@
+import "react-native-reanimated";
+import "react-native-gesture-handler";
+
+import * as React from "react";
+
 import { StatusBar } from "react-native";
 import {
   useFonts,
   Roboto_400Regular,
   Roboto_700Bold,
 } from "@expo-google-fonts/roboto";
+
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import { Routes } from "./src/routes";
 import { Loading } from "./src/components/Loading";
@@ -18,15 +25,17 @@ export default function App() {
   }
 
   return (
-    <AuthContextProvider>
-      <ToastProvider>
-        <StatusBar
-          barStyle="light-content"
-          backgroundColor="transparent"
-          translucent
-        />
-        <Routes />
-      </ToastProvider>
-    </AuthContextProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <AuthContextProvider>
+        <ToastProvider>
+          <StatusBar
+            barStyle="light-content"
+            backgroundColor="transparent"
+            translucent
+          />
+          <Routes />
+        </ToastProvider>
+      </AuthContextProvider>
+    </GestureHandlerRootView>
   );
 }

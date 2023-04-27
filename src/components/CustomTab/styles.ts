@@ -15,7 +15,6 @@ export const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,0.9)",
     flexDirection: "row",
     borderRadius: 99,
-    gap: 8,
     elevation: 10,
     shadowColor: "#000",
     shadowOffset: {

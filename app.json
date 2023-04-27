@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "jameseduapp",
-    "slug": "jameseduapp",
+    "slug": "jamesedu",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -12,7 +12,8 @@
       "backgroundColor": "#ffffff"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/68750ef9-b9af-44c3-ad21-c9dba9945123"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -24,10 +25,26 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.a2dev.jamesedu",
+      "versionCode": 9
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "68750ef9-b9af-44c3-ad21-c9dba9945123"
+      }
+    },
+    "owner": "a2dev",
+    "plugins": [
+      [
+        "expo-build-properties"
+      ]
+    ],
+    "runtimeVersion": {
+      "policy": "sdkVersion"
     }
   }
 }
