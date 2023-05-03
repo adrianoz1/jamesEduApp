@@ -1,14 +1,16 @@
-import { View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import React from "react";
 
-import { THEME } from '../styles/theme';
+import { View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
 
-import { AppRoutes } from './app.routes';
-import { AuthRoutes } from './auth.routes';
+import { THEME } from "../styles/theme";
 
-import { useAuth } from '../hooks/useAuth';
-import { Loading } from '../components/Loading';
-import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
+import { AppRoutes } from "./app.routes";
+import { AuthRoutes } from "./auth.routes";
+
+import { useAuth } from "../hooks/useAuth";
+import { Loading } from "../components/Loading";
+import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 
 type AppRoutes = {
   home: undefined;
@@ -16,27 +18,23 @@ type AppRoutes = {
   signIn: undefined;
   quiz: { id: string };
   history: undefined;
-  finish: { total: string, points: string };
-}
+  finish: { total: string; points: string };
+};
 
 export type AppNavigatorRoutesProps = BottomTabNavigationProp<AppRoutes>;
 
 export function Routes() {
-
   const { user, isLoadingUserStorageData } = useAuth();
-  
 
   if (isLoadingUserStorageData) {
-    return (
-      <Loading />
-    )
+    return <Loading />;
   }
 
   return (
     <View style={{ flex: 1, backgroundColor: THEME.COLORS.BLUE_800 }}>
       <NavigationContainer>
-        {user.id ? (<AppRoutes />) : <AuthRoutes />}
+        {user.id ? <AppRoutes /> : <AuthRoutes />}
       </NavigationContainer>
     </View>
-  )
+  );
 }

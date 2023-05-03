@@ -1,4 +1,5 @@
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import React from "react";
+import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { createStackNavigator } from "@react-navigation/stack";
@@ -6,7 +7,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { Home } from "../screens/Home";
 import { Quiz } from "../screens/Quiz";
 import { Finish } from "../screens/Finish";
-import { History } from "../screens/History";
 import { THEME } from "../styles/theme";
 
 import { CustomTabBar } from "../components/CustomTab";
@@ -15,7 +15,16 @@ const Tab = createBottomTabNavigator();
 
 const HomeStack = createStackNavigator();
 
-function HomeStackScreen() {
+function HomeStackScreen({ navigation, route }) {
+  React.useLayoutEffect(() => {
+    const routeName = getFocusedRouteNameFromRoute(route);
+    if (routeName === "quiz") {
+      navigation.setOptions({ tabBarVisible: false });
+    } else {
+      navigation.setOptions({ tabBarVisible: true });
+    }
+  }, [navigation, route]);
+
   return (
     <HomeStack.Navigator screenOptions={{ headerShown: false }}>
       <HomeStack.Screen name="homeScreen" component={Home} />
@@ -41,31 +50,13 @@ export function AppRoutes() {
       }}
       tabBar={(props) => <CustomTabBar {...props} />}
     >
-       <Tab.Screen 
-        name="Home" 
-        component={HomeStackScreen} 
+      <Tab.Screen
+        name="Home"
+        component={HomeStackScreen}
         options={{
-          tabBarIcon: 'home',
+          tabBarIcon: "home",
         }}
       />
-
-      <Tab.Screen 
-        name="History" 
-        component={History} 
-        options={{
-          tabBarIcon: 'history',
-        }}
-      />
-    
-      {/* <Screen
-        name="history"
-        component={History}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="history" color={color} size={size} />
-          ),
-        }}
-      /> */}
     </Tab.Navigator>
   );
 }

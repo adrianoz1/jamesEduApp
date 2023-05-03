@@ -1,3 +1,5 @@
+import React from "react";
+
 import { useEffect, useState } from "react";
 import { Alert, ScrollView, View } from "react-native";
 
@@ -114,7 +116,7 @@ export function Quiz() {
       {
         text: "Sim",
         style: "destructive",
-        onPress: () => navigate("home"),
+        onPress: () => navigate("homeScreen"),
       },
     ]);
 

@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { View, ScrollView, TouchableOpacity, Alert } from 'react-native';

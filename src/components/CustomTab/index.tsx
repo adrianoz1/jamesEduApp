@@ -1,3 +1,5 @@
+import React from "react";
+
 import { View, TouchableOpacity } from "react-native";
 
 import { MaterialIcons } from "@expo/vector-icons";
@@ -13,7 +15,7 @@ export function CustomTabBar({ state, descriptors, navigation }) {
           const { options } = descriptors[route.key];
 
           const isFocused = state.index === index;
-
+          const tabBarVisible = descriptors[route.key].options.tabBarVisible;
           const onPress = () => {
             const event = navigation.emit({
               type: "tabPress",
@@ -33,7 +35,7 @@ export function CustomTabBar({ state, descriptors, navigation }) {
             });
           };
 
-          return (
+          return tabBarVisible && (
             <TouchableOpacity
               key={route.key}
               accessibilityRole="button"
